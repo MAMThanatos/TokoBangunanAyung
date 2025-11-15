@@ -1,3 +1,3 @@
 # Web Toko Bangunan Ayung
 
-Implementasi Sistem Informasi Keuangan untuk Toko Bahan Bangunan Ayung Berbasis Web
+Implementasi Sistem Informasi Keuangan Pada Toko Bahan Bangunan Ayung Berbasis Web
