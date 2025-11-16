@@ -9,17 +9,14 @@ $daftar_barang = $stmt->fetchAll();
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelola Stok Barang</title>
-    
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
 
     <div class="container">
         <h2>Daftar Stok Barang - Toko Ayung</h2>
+
+        <a href="tambah_barang.php" class="btn-submit">Tambah Barang Baru</a>
 
         <table>
             <thead>
@@ -29,7 +26,7 @@ $daftar_barang = $stmt->fetchAll();
                     <th>Satuan</th>
                     <th>Harga Jual</th>
                     <th>Stok</th>
-                </tr>
+                    <th>Aksi</th> </tr>
             </thead>
             <tbody>
                 <?php foreach ($daftar_barang as $barang): ?>
@@ -40,7 +37,11 @@ $daftar_barang = $stmt->fetchAll();
                     <td><?php echo htmlspecialchars($barang['satuan']); ?></td>
                     <td>Rp <?php echo number_format($barang['harga_jual'], 0, ',', '.'); ?></td>
                     <td><?php echo htmlspecialchars($barang['stok']); ?></td>
-                </tr>
+                    
+                    <td>
+                        <a href="edit_barang.php?id=<?php echo $barang['barang_id']; ?>" class="btn-edit">Edit</a>
+                    </td>
+                    </tr>
 
                 <?php endforeach; ?>
             </tbody>
