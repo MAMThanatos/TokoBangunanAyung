@@ -40,6 +40,10 @@ $daftar_barang = $stmt->fetchAll();
                     
                     <td>
                         <a href="edit_barang.php?id=<?php echo $barang['barang_id']; ?>" class="btn-edit">Edit</a>
+                        
+                        <a href="hapus_barang.php?id=<?php echo $barang['barang_id']; ?>" 
+                           class="btn-delete" 
+                           onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?');">Hapus</a>
                     </td>
                     </tr>
 
