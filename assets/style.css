@@ -1,0 +1,452 @@
+/* =========================================
+   1. GLOBAL & DASAR
+   ========================================= */
+body { 
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    margin: 0;
+    padding: 0; 
+    background-color: #f0f2f5; /* Background sedikit lebih abu-abu modern */
+    color: #333;
+}
+
+/* Container umum untuk halaman dashboard/admin */
+.container { 
+    background: #fff; 
+    padding: 35px; 
+    border-radius: 12px; /* Sudut lebih halus */
+    max-width: 1000px; 
+    margin: 30px auto; 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* Bayangan lebih lembut */
+}
+
+/* Judul menggunakan warna Biru Navy Logo */
+h2, h3 { 
+    text-align: center; 
+    color: #1a3b52; 
+    margin-top: 0;
+    font-weight: 600;
+}
+
+h4 {
+    color: #1a3b52;
+    font-weight: 600;
+}
+
+hr { 
+    border: 0; border-top: 1px solid #eee; margin: 25px 0; 
+}
+
+/* =========================================
+   2. FORMULIR & INPUT
+   ========================================= */
+.form-group { margin-bottom: 20px; }
+
+label { 
+    display: block; margin-bottom: 8px; 
+    font-weight: 500; font-size: 14px; 
+    color: #1a3b52; /* Label warna biru navy */
+}
+
+input[type="text"], input[type="number"], input[type="date"],
+input[type="decimal"], input[type="password"], select, textarea { 
+    width: 100%; 
+    padding: 12px; 
+    border: 2px solid #e1e1e1; 
+    border-radius: 8px; 
+    box-sizing: border-box; 
+    font-size: 14px;
+    transition: all 0.3s;
+    font-family: inherit;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Saat diklik, border jadi Oranye Logo */
+input:focus, select:focus, textarea:focus { 
+    border-color: #c76f35; 
+    outline: none; 
+    box-shadow: 0 0 0 3px rgba(199, 111, 53, 0.1);
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+/* =========================================
+   3. TOMBOL (BUTTONS) - TEMA LOGO
+   ========================================= */
+button, .btn-submit, .btn-cancel, .btn-edit, .btn-delete, .btn-secondary, .btn-primary {
+    padding: 10px 20px; border: none; border-radius: 8px; 
+    cursor: pointer; text-decoration: none; display: inline-block;
+    font-size: 14px; font-weight: 500; transition: all 0.3s ease;
+}
+
+/* Tombol Default (Biru Navy) */
+button, .btn-primary { background: #1a3b52; color: white; }
+button:hover, .btn-primary:hover { background: #142e41; transform: translateY(-2px); }
+
+/* Tombol Tambah/Simpan (Oranye Logo - Agar menonjol) */
+.btn-submit { background: #c76f35; color: white; } 
+.btn-submit:hover { background: #a85c2a; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(199, 111, 53, 0.3); }
+
+/* Tombol Secondary (Biru Muda) */
+.btn-secondary { background: #4facfe; color: white; }
+.btn-secondary:hover { background: #00a8ff; }
+
+/* Tombol Batal (Abu-abu Kebiruan) */
+.btn-cancel { background: #607d8b; color: white; } 
+.btn-cancel:hover { background: #455a64; }
+
+/* Tombol Edit (Kuning Emas - Senada dengan Oranye) */
+.btn-edit { background: #f39c12; color: white; padding: 6px 12px; font-size: 13px; } 
+.btn-edit:hover { background: #d3860b; }
+
+/* Tombol Hapus (Merah Bata - Agar tidak terlalu kontras) */
+.btn-delete { background: #c0392b; color: white; padding: 6px 12px; font-size: 13px; margin-left: 5px; } 
+.btn-delete:hover { background: #962d22; }
+
+/* =========================================
+   4. TABEL DATA - TEMA BIRU NAVY
+   ========================================= */
+table { 
+    width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 20px; font-size: 14px; 
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden; /* Agar sudut tabel melengkung */
+}
+
+th, td { 
+    padding: 15px; text-align: left; border-bottom: 1px solid #eee; 
+}
+
+/* Header Tabel Biru Navy */
+th { 
+    background-color: #1a3b52; 
+    color: white; 
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+/* Baris Zebra dan Hover */
+tr:nth-child(even) { background-color: #f9fbfd; }
+tr:hover { background-color: #fff3e0; } /* Hover jadi oranye sangat muda */
+
+tfoot td {
+    font-weight: 600;
+    background-color: #f9fbfd;
+}
+
+/* =========================================
+   5. KHUSUS HALAMAN LOGIN
+   ========================================= */
+.login-body {
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; margin: 0; padding: 20px;
+    background: linear-gradient(135deg, #1a3b52 0%, #c76f35 100%);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+.login-box {
+    background: white; 
+    padding: 40px 30px; 
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    width: 100%; max-width: 400px;
+    text-align: center;
+}
+
+.login-logo {
+    max-width: 350px; height: auto; margin-bottom: 10px;
+    display: block; margin-left: auto; margin-right: auto;
+}
+
+.login-title {
+    color: #1a3b52; font-weight: 600; font-size: 24px; margin-bottom: 25px;
+}
+
+.alert, .alert-error {
+    background: #f8d7da; color: #721c24; padding: 12px; 
+    margin-bottom: 20px; border-radius: 8px; text-align: center;
+    border: 1px solid #f5c6cb; font-size: 14px;
+}
+
+.login-box input[type="text"], 
+.login-box input[type="password"] {
+    padding: 12px 15px; border: 2px solid #e1e1e1; border-radius: 8px;
+}
+
+.login-box input:focus {
+    border-color: #1a3b52; box-shadow: 0 0 0 3px rgba(26, 59, 82, 0.1);
+}
+
+.login-box label { text-align: left; color: #555; }
+
+.login-box .btn-submit {
+    background-color: #1a3b52; color: white; width: 100%; 
+    padding: 14px; font-size: 16px; font-weight: 600; margin-top: 10px;
+}
+
+.login-box .btn-submit:hover { background-color: #c76f35; }
+
+/* =========================================
+   6. KHUSUS HALAMAN DASHBOARD
+   ========================================= */
+.menu-grid {
+    display: flex; gap: 25px; justify-content: center;
+    margin-top: 40px; flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    border: 1px solid #eee;
+    padding: 35px 20px;
+    border-radius: 12px;
+    width: 220px;
+    text-align: center;
+    text-decoration: none;
+    color: #444;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Garis aksen di atas kartu */
+.card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+    background: #eee; transition: 0.3s;
+}
+
+/* Efek Hover Kartu: Border Atas jadi Oranye, Kartu Naik */
+.card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.card:hover::before { background: #c76f35; }
+
+.card .icon {
+    font-size: 45px;    
+    margin-bottom: 20px; 
+    display: block;
+    color: #1a3b52; /* Ikon warna Biru Navy */
+    transition: 0.3s;
+}
+
+.card:hover .icon { color: #c76f35; transform: scale(1.1); } /* Hover ikon jadi Oranye */
+
+.card h3 {
+    margin: 10px 0;
+    color: #1a3b52;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card p { font-size: 13px; color: #888; }
+
+.user-badge {
+    font-size: 14px; color: #555; font-weight: 600;
+    background: #f0f2f5; padding: 8px 15px; border-radius: 20px;
+}
+
+.role-tag {
+    background-color: #1a3b52; /* Tag role warna Biru Navy */
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+/* =========================================
+   7. KASIR & TRANSAKSI
+   ========================================= */
+.kasir-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.panel-kiri { flex: 1; }
+.panel-kanan { flex: 2; }
+
+.total-box {
+    background: #1a3b52; 
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.total-angka { 
+    font-size: 32px; 
+    font-weight: bold; 
+    color: #ff9f43;
+}
+
+/* Struk */
+.struk-header {
+    margin-bottom: 20px;
+}
+
+.struk-info {
+    margin-bottom: 20px;
+}
+
+.struk-total {
+    margin-top: 20px;
+}
+
+/* Info Box */
+.info-box {
+    background: #f9fbfd;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   8. LAPORAN KEUANGAN
+   ========================================= */
+.stat-card {
+    padding: 25px;
+    border-radius: 12px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-label {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.stat-desc {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+/* Badge untuk jenis transaksi */
+.badge-pemasukan {
+    background: #43e97b;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-pengeluaran {
+    background: #f5576c;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* =========================================
+   9. PAGINATION
+   ========================================= */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 8px 12px;
+    border: 1px solid #e1e1e1;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #1a3b52;
+    transition: all 0.3s;
+}
+
+.pagination a:hover {
+    background: #c76f35;
+    color: white;
+    border-color: #c76f35;
+}
+
+.pagination a.active {
+    background: #1a3b52;
+    color: white;
+    border-color: #1a3b52;
+}
+
+/* =========================================
+   10. RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .kasir-container {
+        flex-direction: column;
+    }
+    
+    .menu-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .card {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .container {
+        padding: 20px;
+        margin: 15px;
+    }
+}
+
+/* =========================================
+   11. PRINT STYLES
+   ========================================= */
+@media print {
+    .no-print { 
+        display: none !important; 
+    }
+    
+    body { 
+        margin: 0; 
+        padding: 20px; 
+        background: white;
+    }
+    
+    .container {
+        box-shadow: none;
+        margin: 0;
+    }
+}

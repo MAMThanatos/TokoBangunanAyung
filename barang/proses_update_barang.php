@@ -1,5 +1,5 @@
 <?php
-require 'koneksi.php';
+require '../config/koneksi.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     

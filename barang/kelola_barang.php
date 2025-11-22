@@ -1,5 +1,5 @@
 <?php
-require 'koneksi.php';
+require '../config/koneksi.php';
 
 $sql = "SELECT barang_id, nama_barang, satuan, harga_jual, stok FROM barang ORDER BY nama_barang ASC";
 $stmt = $pdo->query($sql);
@@ -9,7 +9,7 @@ $daftar_barang = $stmt->fetchAll();
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 

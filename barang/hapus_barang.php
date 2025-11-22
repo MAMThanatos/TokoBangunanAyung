@@ -1,5 +1,5 @@
 <?php
-require 'koneksi.php';
+require '../config/koneksi.php';
 
 $id = (int)$_GET['id'];
 
