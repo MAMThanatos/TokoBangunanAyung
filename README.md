@@ -2,10 +2,10 @@
 
 Implementasi Sistem Informasi Keuangan pada Toko Bahan Bangunan Ayung Berbasis Web
 
-# Kelompok
-Muhamad Aziz Mufashshal
-Muhammad Nur Fahruroji Assyidiq
-Muhammad Rifqy Pratama
+## Kelompok
+- Muhamad Aziz Mufashshal
+- Muhammad Nur Fahruroji Assyidiq
+- Muhammad Rifqy Pratama
 
 ## 📋 Fitur Lengkap
 
@@ -86,33 +86,33 @@ Muhammad Rifqy Pratama
 ```
 TokoBangunanAyung/
 ├── assets/
-│   └── style.css              # CSS terpusat untuk semua halaman
-├── barang/                    # Modul barang
+│   └── style.css              
+├── barang/                    
 │   ├── kelola_barang.php
 │   ├── tambah_barang.php
 │   ├── edit_barang.php
 │   └── ...
-├── pemasok/                   # Modul pemasok
-├── pelanggan/                 # Modul pelanggan
-├── transaksi/                 # Modul transaksi penjualan
-│   ├── kasir.php             # POS kasir
-│   ├── proses_keranjang.php  # Proses keranjang
-│   ├── proses_bayar.php      # Proses pembayaran
-│   ├── struk.php             # Cetak struk
-│   ├── riwayat_penjualan.php # History penjualan
-│   └── detail_penjualan.php  # Detail transaksi
-├── pembelian/                 # Modul pembelian
-│   ├── kelola_pembelian.php  # Riwayat pembelian
-│   ├── tambah_pembelian.php  # Input pembelian
-│   ├── detail_pembelian.php  # Detail pembelian
+├── pemasok/                   
+├── pelanggan/                 
+├── transaksi/                 
+│   ├── kasir.php             
+│   ├── proses_keranjang.php  
+│   ├── proses_bayar.php      
+│   ├── struk.php             
+│   ├── riwayat_penjualan.php 
+│   └── detail_penjualan.php  
+├── pembelian/                 
+│   ├── kelola_pembelian.php  
+│   ├── tambah_pembelian.php  
+│   ├── detail_pembelian.php  
 │   └── ...
-├── laporan/                   # Modul laporan
-│   ├── laporan_keuangan.php  # Dashboard keuangan
-│   └── tambah_transaksi.php  # Input transaksi lain
+├── laporan/                   
+│   ├── laporan_keuangan.php  
+│   └── tambah_transaksi.php  
 ├── config/
-│   └── koneksi.php           # Koneksi database
+│   └── koneksi.php           
 ├── database/
-│   └── db_tba.sql            # SQL database
+│   └── db_tba.sql            
 ├── login.php
 ├── dashboard.php
 └── logout.php
