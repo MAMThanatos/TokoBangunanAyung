@@ -2,10 +2,10 @@
 
 Implementasi Sistem Informasi Keuangan pada Toko Bahan Bangunan Ayung Berbasis Web
 
-# Kelompok
-Muhamad Aziz Mufashshal
-Muhammad Nur Fahruroji Assyidiq
-Muhammad Rifqy Pratama
+## Kelompok
+- Muhamad Aziz Mufashshal
+- Muhammad Nur Fahruroji Assyidiq
+- Muhammad Rifqy Pratama
 
 ## 📋 Fitur Lengkap
 
