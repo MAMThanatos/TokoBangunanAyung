@@ -78,7 +78,7 @@ $transaksi_lain = $stmt_transaksi->fetchAll();
         <div style="display:flex; justify-content:space-between; align-items:center;">
             <h2>📊 Laporan Keuangan</h2>
             <div>
-                <a href="tambah_transaksi.php" class="btn-submit">+ Transaksi Lain</a>
+                <a href="transaksi_lain.php" class="btn-submit" style="text-decoration:none; margin-right:10px;">➕ Transaksi Lain</a>
                 <a href="../dashboard.php" class="btn-cancel">Kembali</a>
             </div>
         </div>
@@ -136,7 +136,7 @@ $transaksi_lain = $stmt_transaksi->fetchAll();
                 <h3 style="color: #43e97b;">💰 Pemasukan</h3>
                 <table style="width:100%;">
                     <tr>
-                        <td>Penjualan</td>
+                        <td>Penjualan Barang</td>
                         <td style="text-align:right;"><b>Rp <?php echo number_format($data_penjualan['total_penjualan'], 0, ',', '.'); ?></b></td>
                     </tr>
                     <tr>
@@ -154,7 +154,7 @@ $transaksi_lain = $stmt_transaksi->fetchAll();
                 <h3 style="color: #f5576c;">💸 Pengeluaran</h3>
                 <table style="width:100%;">
                     <tr>
-                        <td>Pembelian Barang</td>
+                        <td>Pembelian Stok</td>
                         <td style="text-align:right;"><b>Rp <?php echo number_format($data_pembelian['total_pembelian'], 0, ',', '.'); ?></b></td>
                     </tr>
                     <tr>
@@ -170,9 +170,9 @@ $transaksi_lain = $stmt_transaksi->fetchAll();
 
         </div>
 
-        <!-- Transaksi Keuangan Lainnya -->
-        <h3>Transaksi Keuangan Lainnya</h3>
-        <table>
+        <!-- Tabel Riwayat Transaksi Lain (YANG SEBELUMNYA HILANG) -->
+        <h3>Riwayat Transaksi Lain (Operasional)</h3>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Tanggal</th>
@@ -182,27 +182,25 @@ $transaksi_lain = $stmt_transaksi->fetchAll();
                 </tr>
             </thead>
             <tbody>
-                <?php if (empty($transaksi_lain)): ?>
-                <tr>
-                    <td colspan="4" style="text-align:center;">Tidak ada transaksi lainnya</td>
-                </tr>
-                <?php else: ?>
-                    <?php foreach ($transaksi_lain as $t): ?>
+                <?php if (count($transaksi_lain) > 0): ?>
+                    <?php foreach ($transaksi_lain as $row): ?>
                     <tr>
-                        <td><?php echo date('d/m/Y H:i', strtotime($t['tanggal'])); ?></td>
+                        <td><?php echo date('d-m-Y', strtotime($row['tanggal'])); ?></td>
                         <td>
-                            <span class="badge-<?php echo $t['jenis']; ?>">
-                                <?php echo ucfirst($t['jenis']); ?>
-                            </span>
+                            <?php if ($row['jenis'] == 'pemasukan'): ?>
+                                <span style="color:green;">Pemasukan</span>
+                            <?php else: ?>
+                                <span style="color:red;">Pengeluaran</span>
+                            <?php endif; ?>
                         </td>
-                        <td><?php echo $t['keterangan']; ?></td>
-                        <td>
-                            <b style="color: <?php echo $t['jenis'] == 'pemasukan' ? '#43e97b' : '#f5576c'; ?>;">
-                                Rp <?php echo number_format($t['jumlah'], 0, ',', '.'); ?>
-                            </b>
-                        </td>
+                        <td><?php echo htmlspecialchars($row['keterangan']); ?></td>
+                        <td>Rp <?php echo number_format($row['jumlah'], 0, ',', '.'); ?></td>
                     </tr>
                     <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="4" style="text-align:center;">Belum ada transaksi lain di periode ini.</td>
+                    </tr>
                 <?php endif; ?>
             </tbody>
         </table>

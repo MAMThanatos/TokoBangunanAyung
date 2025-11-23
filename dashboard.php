@@ -43,7 +43,7 @@ $role = $_SESSION['role'];
         <div class="menu-grid">
             
             <?php if ($role == 'admin' || $role == 'owner'): ?>
-            <a href="Barang/kelola_barang.php" class="card">
+            <a href="barang/kelola_barang.php" class="card">
                 <div class="icon">📦</div>
                 <h3>Stok Barang</h3>
                 <p>Kelola stok, harga modal, dan harga jual.</p>
@@ -51,27 +51,27 @@ $role = $_SESSION['role'];
             <?php endif; ?>
 
             <?php if ($role == 'admin'): ?>
-            <a href="Pemasok/kelola_pemasok.php" class="card">
+            <a href="pemasok/kelola_pemasok.php" class="card">
                 <div class="icon">🏭</div>
                 <h3>Data Pemasok</h3>
                 <p>Database supplier tempat kulakan.</p>
             </a>
             <?php endif; ?>
 
-            <a href="#" class="card" style="opacity: 0.7;">
+            <a href="pelanggan/kelola_pelanggan.php" class="card">
                 <div class="icon">👥</div>
                 <h3>Pelanggan</h3>
-                <p>Data buku alamat pelanggan. (Coming Soon)</p>
+                <p>Data buku alamat pelanggan.</p>
             </a>
 
-            <a href="#" class="card" style="opacity: 0.7;">
+            <a href="transaksi/kasir.php" class="card">
                 <div class="icon">🛒</div>
                 <h3>Kasir</h3>
-                <p>Mesin kasir penjualan. (Coming Soon)</p>
+                <p>Mesin kasir penjualan.</p>
             </a>
 
             <?php if ($role == 'admin' || $role == 'owner'): ?>
-            <a href="#" class="card" style="opacity: 0.7;">
+            <a href="laporan/laporan_keuangan.php" class="card">
                 <div class="icon">📊</div>
                 <h3>Laporan</h3>
                 <p>Laporan keuangan dan laba rugi.</p>

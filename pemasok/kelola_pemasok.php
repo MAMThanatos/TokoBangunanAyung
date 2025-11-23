@@ -17,7 +17,10 @@ $daftar_pemasok = $stmt->fetchAll();
 <body>
 
     <div class="container">
-        <h2>Data Pemasok (Supplier) - Toko Ayung</h2>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h2>Data Pemasok (Supplier) - Toko Ayung</h2>
+            <a href="../dashboard.php" class="btn-cancel">Kembali ke Dashboard</a>
+        </div>
         
         <a href="kelola_barang.php" class="btn-cancel">Lihat Stok Barang</a>
         <br><br>

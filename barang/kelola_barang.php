@@ -14,7 +14,10 @@ $daftar_barang = $stmt->fetchAll();
 <body>
 
     <div class="container">
-        <h2>Daftar Stok Barang - Toko Ayung</h2>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h2>Daftar Stok Barang - Toko Ayung</h2>
+            <a href="../dashboard.php" class="btn-cancel">Kembali ke Dashboard</a>
+        </div>
 
         <a href="tambah_barang.php" class="btn-submit">Tambah Barang Baru</a>
 
