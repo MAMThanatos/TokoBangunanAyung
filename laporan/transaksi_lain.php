@@ -10,7 +10,6 @@ if (!isset($_SESSION['status'])) {
 $success_msg = "";
 $error_msg = "";
 
-// Handle Form Submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tanggal = $_POST['tanggal'];
     $jenis = $_POST['jenis'];

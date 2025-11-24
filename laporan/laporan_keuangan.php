@@ -77,10 +77,7 @@ $transaksi_lain = $stmt_transaksi->fetchAll();
     <div class="container">
         <div style="display:flex; justify-content:space-between; align-items:center;">
             <h2>📊 Laporan Keuangan</h2>
-            <div>
-                <a href="transaksi_lain.php" class="btn-submit" style="text-decoration:none; margin-right:10px;">➕ Transaksi Lain</a>
-                <a href="../dashboard.php" class="btn-cancel">Kembali</a>
-            </div>
+            <a href="../dashboard.php" class="btn-cancel">Kembali</a>
         </div>
         <hr>
 
@@ -170,8 +167,11 @@ $transaksi_lain = $stmt_transaksi->fetchAll();
 
         </div>
 
-        <!-- Tabel Riwayat Transaksi Lain (YANG SEBELUMNYA HILANG) -->
-        <h3>Riwayat Transaksi Lain (Operasional)</h3>
+        <!-- Tabel Riwayat Transaksi Operasional -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h3 style="margin: 0;">📝 Riwayat Transaksi (Operasional)</h3>
+            <a href="transaksi_lain.php" class="btn-submit" style="text-decoration:none; font-size: 13px;">➕ Tambah Transaksi</a>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -188,18 +188,18 @@ $transaksi_lain = $stmt_transaksi->fetchAll();
                         <td><?php echo date('d-m-Y', strtotime($row['tanggal'])); ?></td>
                         <td>
                             <?php if ($row['jenis'] == 'pemasukan'): ?>
-                                <span style="color:green;">Pemasukan</span>
+                                <span class="badge-pemasukan">Pemasukan</span>
                             <?php else: ?>
-                                <span style="color:red;">Pengeluaran</span>
+                                <span class="badge-pengeluaran">Pengeluaran</span>
                             <?php endif; ?>
                         </td>
                         <td><?php echo htmlspecialchars($row['keterangan']); ?></td>
-                        <td>Rp <?php echo number_format($row['jumlah'], 0, ',', '.'); ?></td>
+                        <td style="text-align:right;"><b>Rp <?php echo number_format($row['jumlah'], 0, ',', '.'); ?></b></td>
                     </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="4" style="text-align:center;">Belum ada transaksi lain di periode ini.</td>
+                        <td colspan="4" style="text-align:center;">Belum ada transaksi operasional di periode ini.</td>
                     </tr>
                 <?php endif; ?>
             </tbody>

@@ -7,6 +7,12 @@ if (!isset($_SESSION['status'])) {
     exit();
 }
 
+// Cek role - hanya kasir yang boleh akses
+if ($_SESSION['role'] != 'kasir') {
+    echo "<script>alert('Akses ditolak! Hanya Kasir yang dapat menggunakan fitur ini.'); window.location.href='../dashboard.php';</script>";
+    exit();
+}
+
 if (!isset($_SESSION['keranjang'])) {
     $_SESSION['keranjang'] = [];
 }

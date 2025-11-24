@@ -24,9 +24,12 @@ $role = $_SESSION['role'];
     <div class="container">
         
         <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px;">
-            <div>
-                <h2>Dashboard Utama</h2>
-                <p style="margin:0; color:#666;">Selamat Datang, <b><?php echo htmlspecialchars($nama); ?></b></p>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <img src="gambar/Gemini_Generated_Image_wnd8p5wnd8p5wnd8.png" alt="Logo Toko Ayung" style="height: 60px; width: auto;">
+                <div>
+                    <h2 style="margin: 0;">Dashboard Utama</h2>
+                    <p style="margin:0; color:#666;">Selamat Datang, <b><?php echo htmlspecialchars($nama); ?></b></p>
+                </div>
             </div>
             
             <div style="text-align: right;">
@@ -42,6 +45,7 @@ $role = $_SESSION['role'];
 
         <div class="menu-grid">
             
+            <!-- Stok Barang - Admin & Owner Only -->
             <?php if ($role == 'admin' || $role == 'owner'): ?>
             <a href="barang/kelola_barang.php" class="card">
                 <div class="icon">📦</div>
@@ -50,6 +54,7 @@ $role = $_SESSION['role'];
             </a>
             <?php endif; ?>
 
+            <!-- Data Pemasok - Admin Only -->
             <?php if ($role == 'admin'): ?>
             <a href="pemasok/kelola_pemasok.php" class="card">
                 <div class="icon">🏭</div>
@@ -58,18 +63,23 @@ $role = $_SESSION['role'];
             </a>
             <?php endif; ?>
 
+            <!-- Pelanggan - All Roles -->
             <a href="pelanggan/kelola_pelanggan.php" class="card">
                 <div class="icon">👥</div>
                 <h3>Pelanggan</h3>
                 <p>Data buku alamat pelanggan.</p>
             </a>
 
+            <!-- Kasir - Kasir Role Only -->
+            <?php if ($role == 'kasir'): ?>
             <a href="transaksi/kasir.php" class="card">
                 <div class="icon">🛒</div>
                 <h3>Kasir</h3>
                 <p>Mesin kasir penjualan.</p>
             </a>
+            <?php endif; ?>
 
+            <!-- Laporan - Admin & Owner Only -->
             <?php if ($role == 'admin' || $role == 'owner'): ?>
             <a href="laporan/laporan_keuangan.php" class="card">
                 <div class="icon">📊</div>

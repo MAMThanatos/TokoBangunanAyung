@@ -13,13 +13,12 @@ body {
 .container { 
     background: #fff; 
     padding: 35px; 
-    border-radius: 12px; /* Sudut lebih halus */
-    max-width: 1200px; /* Diperbesar dari 1000px agar lebih lega */
+    border-radius: 10px; 
+    max-width: 2000px; 
     margin: 30px auto; 
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05); /* Bayangan lebih lembut */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
 }
 
-/* Judul menggunakan warna Biru Navy Logo */
 h2, h3 { 
     text-align: center; 
     color: #1a3b52; 
@@ -94,27 +93,21 @@ button, .btn-submit, .btn-cancel, .btn-edit, .btn-delete, .btn-secondary, .btn-p
     font-size: 14px; font-weight: 500; transition: all 0.3s ease;
 }
 
-/* Tombol Default (Biru Navy) */
 button, .btn-primary { background: #1a3b52; color: white; }
 button:hover, .btn-primary:hover { background: #142e41; transform: translateY(-2px); }
 
-/* Tombol Tambah/Simpan (Oranye Logo - Agar menonjol) */
 .btn-submit { background: #c76f35; color: white; } 
 .btn-submit:hover { background: #a85c2a; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(199, 111, 53, 0.3); }
 
-/* Tombol Secondary (Biru Muda) */
 .btn-secondary { background: #4facfe; color: white; }
 .btn-secondary:hover { background: #00a8ff; }
 
-/* Tombol Batal (Abu-abu Kebiruan) */
 .btn-cancel { background: #607d8b; color: white; } 
 .btn-cancel:hover { background: #455a64; }
 
-/* Tombol Edit (Kuning Emas - Senada dengan Oranye) */
 .btn-edit { background: #f39c12; color: white; padding: 6px 12px; font-size: 13px; } 
 .btn-edit:hover { background: #d3860b; }
 
-/* Tombol Hapus (Merah Bata - Agar tidak terlalu kontras) */
 .btn-delete { background: #c0392b; color: white; padding: 6px 12px; font-size: 13px; margin-left: 5px; } 
 .btn-delete:hover { background: #962d22; }
 
@@ -125,14 +118,13 @@ table {
     width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 20px; font-size: 14px; 
     border: 1px solid #eee;
     border-radius: 8px;
-    overflow: hidden; /* Agar sudut tabel melengkung */
+    overflow: hidden;
 }
 
 th, td { 
     padding: 15px; text-align: left; border-bottom: 1px solid #eee; 
 }
 
-/* Header Tabel Biru Navy */
 th { 
     background-color: #1a3b52; 
     color: white; 
@@ -142,9 +134,8 @@ th {
     letter-spacing: 0.5px;
 }
 
-/* Baris Zebra dan Hover */
 tr:nth-child(even) { background-color: #f9fbfd; }
-tr:hover { background-color: #fff3e0; } /* Hover jadi oranye sangat muda */
+tr:hover { background-color: #fff3e0; }
 
 tfoot td {
     font-weight: 600;
@@ -168,6 +159,7 @@ tfoot td {
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     width: 100%; max-width: 400px;
     text-align: center;
+    border-top: 5px solid #c76f35;
 }
 
 .login-logo {
@@ -191,17 +183,23 @@ tfoot td {
 }
 
 .login-box input:focus {
-    border-color: #1a3b52; box-shadow: 0 0 0 3px rgba(26, 59, 82, 0.1);
+    border-color: #c76f35; box-shadow: 0 0 0 3px rgba(199, 111, 53, 0.15);
 }
 
-.login-box label { text-align: left; color: #555; }
+.login-box label { text-align: left; color: #1a3b52; font-weight: 500; }
 
 .login-box .btn-submit {
-    background-color: #1a3b52; color: white; width: 100%; 
+    background: linear-gradient(135deg, #1a3b52 0%, #c76f35 100%);
+    color: white; width: 100%; 
     padding: 14px; font-size: 16px; font-weight: 600; margin-top: 10px;
+    border: none;
+    transition: all 0.3s ease;
 }
 
-.login-box .btn-submit:hover { background-color: #c76f35; }
+.login-box .btn-submit:hover { 
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(199, 111, 53, 0.4);
+}
 
 /* =========================================
    6. KHUSUS HALAMAN DASHBOARD
@@ -226,13 +224,11 @@ tfoot td {
     overflow: hidden;
 }
 
-/* Garis aksen di atas kartu */
 .card::before {
     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
     background: #eee; transition: 0.3s;
 }
 
-/* Efek Hover Kartu: Border Atas jadi Oranye, Kartu Naik */
 .card:hover {
     transform: translateY(-7px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
@@ -247,7 +243,7 @@ tfoot td {
     transition: 0.3s;
 }
 
-.card:hover .icon { color: #c76f35; transform: scale(1.1); } /* Hover ikon jadi Oranye */
+.card:hover .icon { color: #c76f35; transform: scale(1.1); } 
 
 .card h3 {
     margin: 10px 0;
@@ -264,7 +260,7 @@ tfoot td {
 }
 
 .role-tag {
-    background-color: #1a3b52; /* Tag role warna Biru Navy */
+    background-color: #1a3b52;
     color: white;
     padding: 3px 8px;
     border-radius: 4px;
@@ -301,7 +297,6 @@ tfoot td {
     color: #ff9f43;
 }
 
-/* Struk */
 .struk-header {
     margin-bottom: 20px;
 }
@@ -314,7 +309,6 @@ tfoot td {
     margin-top: 20px;
 }
 
-/* Info Box */
 .info-box {
     background: #f9fbfd;
     border: 1px solid #e1e1e1;
@@ -357,7 +351,6 @@ tfoot td {
     opacity: 0.8;
 }
 
-/* Badge untuk jenis transaksi */
 .badge-pemasukan {
     background: #43e97b;
     color: white;
@@ -408,25 +401,29 @@ tfoot td {
 }
 
 /* =========================================
-   10. TRANSAKSI LAIN - LAYOUT & TABLE
+   10. TRANSAKSI LAIN 
    ========================================= */
 .transaksi-wrapper {
     display: grid;
-    grid-template-columns: 300px 1fr; /* Ubah dari 1fr 2fr ke ukuran fixed dan flexible */
-    gap: 20px;
-    align-items: start;
+    grid-template-columns: 350px 1fr;
+    gap: 25px;
+    margin-top: 20px;
 }
 
-/* Override card width untuk transaksi wrapper - PENTING: Gunakan !important */
-.transaksi-wrapper > .card {
-    width: 100% !important;
-    max-width: none !important;
-    min-width: 0 !important;
+.transaksi-wrapper .card {
+    width: auto;
+    padding: 25px;
+    text-align: left;
+}
+
+.transaksi-wrapper .card h3 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 
 .table-wrapper {
     overflow-x: auto;
-    width: 100%;
 }
 
 /* =========================================
@@ -451,9 +448,7 @@ tfoot td {
         padding: 20px;
         margin: 15px;
     }
-}
-
-@media (max-width: 968px) {
+    
     .transaksi-wrapper {
         grid-template-columns: 1fr;
     }

@@ -92,8 +92,16 @@ TokoBangunanAyung/
 │   ├── tambah_barang.php
 │   ├── edit_barang.php
 │   └── ...
-├── pemasok/                   
-├── pelanggan/                 
+├── pemasok/
+│   ├── kelola_pemasok.php
+│   ├── tambah_pemasok.php
+│   ├── edit_pemasok.php
+│   └── ...
+├── pelanggan/
+│   ├── kelola_pelanggan.php
+│   ├── tambah_pelanggan.php
+│   ├── edit_pelanggan.php
+│   └── ...
 ├── transaksi/                 
 │   ├── kasir.php             
 │   ├── proses_keranjang.php  
@@ -108,7 +116,7 @@ TokoBangunanAyung/
 │   └── ...
 ├── laporan/                   
 │   ├── laporan_keuangan.php  
-│   └── tambah_transaksi.php  
+│   ├── tambah_transaksi.php  
 ├── config/
 │   └── koneksi.php           
 ├── database/
@@ -191,9 +199,3 @@ TokoBangunanAyung/
 ✅ Filter & Pagination
 ✅ CSS Terpusat
 ✅ Responsive Design
-
----
-
-**Developed for**: Toko Bahan Bangunan Ayung
-**Version**: 1.0 Complete
-**Last Update**: 2025
