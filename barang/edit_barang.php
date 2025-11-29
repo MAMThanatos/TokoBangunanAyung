@@ -21,13 +21,14 @@ if (!$barang) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Barang</title>
-    <link rel="stylesheet" href="style.css"> </head>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
 <body>
 
     <div class="container">
         <h2>Edit Barang: <?php echo htmlspecialchars($barang['nama_barang']); ?></h2>
 
-        <form action="proses_update.php" method="POST">
+        <form action="proses_update_barang.php" method="POST">
             
             <input type="hidden" name="barang_id" value="<?php echo $barang['barang_id']; ?>">
 
@@ -43,12 +44,12 @@ if (!$barang) {
 
             <div class="form-group">
                 <label for="harga_beli">Harga Beli (Modal)</label>
-                <input type="decimal" id="harga_beli" name="harga_beli" value="<?php echo htmlspecialchars($barang['harga_beli']); ?>" required>
+                <input type="number" step="0.01" id="harga_beli" name="harga_beli" value="<?php echo htmlspecialchars($barang['harga_beli']); ?>" required>
             </div>
 
             <div class="form-group">
                 <label for="harga_jual">Harga Jual</label>
-                <input type="decimal" id="harga_jual" name="harga_jual" value="<?php echo htmlspecialchars($barang['harga_jual']); ?>" required>
+                <input type="number" step="0.01" id="harga_jual" name="harga_jual" value="<?php echo htmlspecialchars($barang['harga_jual']); ?>" required>
             </div>
 
             <div class="form-group">

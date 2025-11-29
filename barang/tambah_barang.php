@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Barang Baru</title>
-    <link rel="stylesheet" href="../assets/style.css"> </head>
+    <link rel="stylesheet" href="../assets/style.css">
+</head>
 <body>
 
     <div class="container">
         <h2>Tambah Barang Baru</h2>
 
-        <form action="proses_tambah.php" method="POST">
+        <form action="proses_tambah_barang.php" method="POST">
             
             <div class="form-group">
                 <label for="nama_barang">Nama Barang</label>
@@ -24,12 +25,12 @@
 
             <div class="form-group">
                 <label for="harga_beli">Harga Beli (Modal)</label>
-                <input type="decimal" id="harga_beli" name="harga_beli" required>
+                <input type="number" step="0.01" id="harga_beli" name="harga_beli" required>
             </div>
 
             <div class="form-group">
                 <label for="harga_jual">Harga Jual</label>
-                <input type="decimal" id="harga_jual" name="harga_jual" required>
+                <input type="number" step="0.01" id="harga_jual" name="harga_jual" required>
             </div>
 
             <div class="form-group">
