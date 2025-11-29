@@ -22,7 +22,7 @@ $daftar_pemasok = $stmt->fetchAll();
             <a href="../dashboard.php" class="btn-cancel">Kembali ke Dashboard</a>
         </div>
         
-        <a href="kelola_barang.php" class="btn-cancel">Lihat Stok Barang</a>
+        <a href="../barang/kelola_barang.php" class="btn-cancel">Lihat Stok Barang</a>
         <br><br>
 
         <a href="tambah_pemasok.php" class="btn-submit">Tambah Pemasok Baru</a>

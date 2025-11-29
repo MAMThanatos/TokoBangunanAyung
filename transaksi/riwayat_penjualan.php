@@ -42,7 +42,8 @@ $tanggal_dari = $_GET['dari'] ?? date('Y-m-01');
 $tanggal_sampai = $_GET['sampai'] ?? date('Y-m-d');
 
 // Query data penjualan
-$sql = "SELECT p.*, pel.nama_pelanggan, u.nama as nama_kasir 
+// PERBAIKAN: nama_pelanggan diganti jadi nama_pelangkan sesuai database
+$sql = "SELECT p.*, pel.nama_pelangkan as nama_pelanggan, u.nama as nama_kasir 
         FROM penjualan p 
         LEFT JOIN pelanggan pel ON p.pelanggan_id = pel.pelanggan_id
         LEFT JOIN users u ON p.user_id = u.user_id
@@ -174,7 +175,7 @@ $transaksi_lain = $stmt_lain->fetchAll();
                                 <span class="badge-pengeluaran">Pengeluaran</span>
                             <?php endif; ?>
                         </td>
-                        <td><?php echo htmlspecialchars($row['keterangan']); ?></td>
+                        <td><?php echo htmlspecialchars($row['keterangan'] ?? ''); ?></td>
                         <td style="text-align:right;"><b>Rp <?php echo number_format($row['jumlah'], 0, ',', '.'); ?></b></td>
                     </tr>
                     <?php endforeach; ?>

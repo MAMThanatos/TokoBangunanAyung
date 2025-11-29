@@ -7,6 +7,12 @@ if (!isset($_SESSION['status'])) {
     exit();
 }
 
+// SECURITY CHECK: Hanya Admin dan Owner yang boleh akses
+if ($_SESSION['role'] != 'admin' && $_SESSION['role'] != 'owner') {
+    echo "<script>alert('Akses ditolak! Anda tidak memiliki izin untuk mengakses halaman ini.'); window.location.href='../dashboard.php';</script>";
+    exit();
+}
+
 if (!isset($_SESSION['keranjang_beli'])) {
     $_SESSION['keranjang_beli'] = [];
 }
@@ -122,17 +128,26 @@ foreach ($_SESSION['keranjang_beli'] as $item) {
             <hr>
 
             <form action="proses_simpan_pembelian.php" method="POST" onsubmit="return confirm('Simpan pembelian ini?');">
-                <div class="form-group">
-                    <label>Pilih Pemasok</label>
-                    <select name="pemasok_id" style="width:100%; padding:10px;" required>
-                        <option value="">-- Pilih Pemasok --</option>
-                        <?php foreach ($pemasok_list as $p): ?>
-                            <option value="<?php echo $p['pemasok_id']; ?>">
-                                <?php echo $p['nama_pemasok']; ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
+                
+                <div style="display:flex; gap: 15px;">
+                    <div class="form-group" style="flex:1;">
+                        <label>Pilih Pemasok</label>
+                        <select name="pemasok_id" style="width:100%; padding:10px;" required>
+                            <option value="">-- Pilih Pemasok --</option>
+                            <?php foreach ($pemasok_list as $p): ?>
+                                <option value="<?php echo $p['pemasok_id']; ?>">
+                                    <?php echo $p['nama_pemasok']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" style="flex:1;">
+                        <label>Tanggal Pembelian</label>
+                        <input type="date" name="tanggal" value="<?php echo date('Y-m-d'); ?>" required style="width:100%; padding:8px;">
+                    </div>
                 </div>
+
                 <br>
                 <button type="submit" class="btn-submit" style="width:100%; font-size:18px; padding:15px;">
                     💾 SIMPAN PEMBELIAN

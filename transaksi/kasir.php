@@ -7,9 +7,9 @@ if (!isset($_SESSION['status'])) {
     exit();
 }
 
-// Cek role - hanya kasir yang boleh akses
-if ($_SESSION['role'] != 'kasir') {
-    echo "<script>alert('Akses ditolak! Hanya Kasir yang dapat menggunakan fitur ini.'); window.location.href='../dashboard.php';</script>";
+// Cek role - Admin dan Kasir boleh akses
+if ($_SESSION['role'] != 'kasir' && $_SESSION['role'] != 'admin') {
+    echo "<script>alert('Akses ditolak! Hanya Kasir dan Admin yang dapat menggunakan fitur ini.'); window.location.href='../dashboard.php';</script>";
     exit();
 }
 
@@ -35,7 +35,7 @@ foreach ($_SESSION['keranjang'] as $item) {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Kasir Toko Ayung</title>
+    <title>Penjualan Toko Ayung</title>
     <link rel="stylesheet" href="../assets/style.css">
     <style>
         .kasir-container {
@@ -63,7 +63,7 @@ foreach ($_SESSION['keranjang'] as $item) {
     <!-- Header Sederhana -->
     <div class="container" style="margin-top: 10px; padding: 15px;">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 style="margin:0;">🛒 Mesin Kasir</h3>
+            <h3 style="margin:0;">🛒 Input Penjualan</h3>
             <a href="../dashboard.php" class="btn-cancel">Kembali ke Dashboard</a>
         </div>
     </div>
@@ -161,10 +161,16 @@ foreach ($_SESSION['keranjang'] as $item) {
                         </select>
                     </div>
                     <div style="flex:1;">
-                        <label>Uang Bayar (Rp)</label>
-                        <input type="number" name="bayar" required placeholder="Tanpa titik">
+                        <label>Tanggal Penjualan</label>
+                        <input type="date" name="tanggal" value="<?php echo date('Y-m-d'); ?>" required style="width:100%; padding:8px;">
                     </div>
                 </div>
+                
+                <div style="margin-top: 15px;">
+                    <label>Uang Bayar (Rp)</label>
+                    <input type="number" name="bayar" required placeholder="Tanpa titik" style="width: 100%; padding: 10px;">
+                </div>
+                
                 <br>
                 <button type="submit" class="btn-submit" style="width:100%; font-size:18px; padding:15px;">
                     🖨️ PROSES BAYAR & CETAK

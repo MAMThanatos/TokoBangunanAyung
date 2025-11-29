@@ -70,12 +70,21 @@ $role = $_SESSION['role'];
                 <p>Data buku alamat pelanggan.</p>
             </a>
 
-            <!-- Kasir - Kasir Role Only -->
-            <?php if ($role == 'kasir'): ?>
+            <!-- Kasir - Admin & Kasir Only -->
+            <?php if ($role == 'admin' || $role == 'kasir'): ?>
             <a href="transaksi/kasir.php" class="card">
                 <div class="icon">🛒</div>
-                <h3>Kasir</h3>
-                <p>Mesin kasir penjualan.</p>
+                <h3>Penjualan</h3>
+                <p>Mencatat penjualan.</p>
+            </a>
+            <?php endif; ?>
+
+            <!-- Pembelian - Admin Only -->
+            <?php if ($role == 'admin' || $role == 'owner'): ?>
+            <a href="pembelian/kelola_pembelian.php" class="card">
+                <div class="icon">🧾</div>
+                <h3>Pembelian</h3>
+                <p>Mencatat pembelian.</p>
             </a>
             <?php endif; ?>
 

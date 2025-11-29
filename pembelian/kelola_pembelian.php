@@ -7,6 +7,12 @@ if (!isset($_SESSION['status'])) {
     exit();
 }
 
+// SECURITY CHECK: Hanya Admin dan Owner yang boleh akses
+if ($_SESSION['role'] != 'admin' && $_SESSION['role'] != 'owner') {
+    echo "<script>alert('Akses ditolak! Anda tidak memiliki izin untuk mengakses halaman ini.'); window.location.href='../dashboard.php';</script>";
+    exit();
+}
+
 // Pagination
 $limit = 20;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -24,8 +30,14 @@ $sql = "SELECT p.*, ps.nama_pemasok, u.nama as nama_user
         WHERE DATE(p.tanggal) BETWEEN ? AND ?
         ORDER BY p.tanggal DESC
         LIMIT ? OFFSET ?";
+
 $stmt = $pdo->prepare($sql);
-$stmt->execute([$tanggal_dari, $tanggal_sampai, $limit, $offset]);
+$stmt->bindValue(1, $tanggal_dari);
+$stmt->bindValue(2, $tanggal_sampai);
+$stmt->bindValue(3, $limit, PDO::PARAM_INT);
+$stmt->bindValue(4, $offset, PDO::PARAM_INT);
+$stmt->execute();
+
 $data = $stmt->fetchAll();
 
 // Hitung total

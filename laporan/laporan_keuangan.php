@@ -27,7 +27,7 @@ $stmt_pembelian = $pdo->prepare($sql_pembelian);
 $stmt_pembelian->execute([$tanggal_dari, $tanggal_sampai]);
 $data_pembelian = $stmt_pembelian->fetch();
 
-// Hitung pemasukan lain
+// Hitung pemasukan lain (Hanya yang BUKAN Penjualan)
 $sql_pemasukan = "SELECT COALESCE(SUM(jumlah), 0) as total
                   FROM transaksi_keuangan 
                   WHERE jenis = 'pemasukan' 
@@ -37,7 +37,7 @@ $stmt_pemasukan = $pdo->prepare($sql_pemasukan);
 $stmt_pemasukan->execute([$tanggal_dari, $tanggal_sampai]);
 $pemasukan_lain = $stmt_pemasukan->fetch()['total'];
 
-// Hitung pengeluaran lain
+// Hitung pengeluaran lain (Hanya yang BUKAN Pembelian)
 $sql_pengeluaran = "SELECT COALESCE(SUM(jumlah), 0) as total
                     FROM transaksi_keuangan 
                     WHERE jenis = 'pengeluaran' 
@@ -55,28 +55,27 @@ $total_pemasukan = $data_penjualan['total_penjualan'] + $pemasukan_lain;
 $total_pengeluaran = $data_pembelian['total_pembelian'] + $pengeluaran_lain;
 $laba_bersih = $total_pemasukan - $total_pengeluaran;
 
-// Ambil transaksi keuangan lainnya
+// --- MODIFIKASI: Ambil SEMUA transaksi keuangan (Penjualan, Pembelian, & Lainnya) ---
 $sql_transaksi = "SELECT * FROM transaksi_keuangan 
                   WHERE DATE(tanggal) BETWEEN ? AND ?
-                  AND (keterangan NOT LIKE 'Penjualan%' AND keterangan NOT LIKE 'Pembelian%')
                   ORDER BY tanggal DESC";
 $stmt_transaksi = $pdo->prepare($sql_transaksi);
 $stmt_transaksi->execute([$tanggal_dari, $tanggal_sampai]);
-$transaksi_lain = $stmt_transaksi->fetchAll();
+$transaksi_list = $stmt_transaksi->fetchAll();
 ?>
 
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Laporan Keuangan</title>
+    <title>Laporan Keuangan Lengkap</title>
     <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
     <div class="container">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h2>📊 Laporan Keuangan</h2>
+            <h2>📊 Laporan Keuangan Lengkap</h2>
             <a href="../dashboard.php" class="btn-cancel">Kembali</a>
         </div>
         <hr>
@@ -167,43 +166,61 @@ $transaksi_lain = $stmt_transaksi->fetchAll();
 
         </div>
 
-        <!-- Tabel Riwayat Transaksi Operasional -->
+        <!-- Tabel Riwayat SEMUA Transaksi -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <h3 style="margin: 0;">📝 Riwayat Transaksi (Operasional)</h3>
-            <a href="transaksi_lain.php" class="btn-submit" style="text-decoration:none; font-size: 13px;">➕ Tambah Transaksi</a>
+            <h3 style="margin: 0;">📜 Riwayat Semua Transaksi (Ledger)</h3>
+            <a href="transaksi_lain.php" class="btn-submit" style="text-decoration:none; font-size: 13px;">➕ Tambah Transaksi Lain</a>
         </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Tanggal</th>
-                    <th>Jenis</th>
-                    <th>Keterangan</th>
-                    <th>Jumlah</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (count($transaksi_lain) > 0): ?>
-                    <?php foreach ($transaksi_lain as $row): ?>
+        
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td><?php echo date('d-m-Y', strtotime($row['tanggal'])); ?></td>
-                        <td>
-                            <?php if ($row['jenis'] == 'pemasukan'): ?>
-                                <span class="badge-pemasukan">Pemasukan</span>
-                            <?php else: ?>
-                                <span class="badge-pengeluaran">Pengeluaran</span>
-                            <?php endif; ?>
-                        </td>
-                        <td><?php echo htmlspecialchars($row['keterangan']); ?></td>
-                        <td style="text-align:right;"><b>Rp <?php echo number_format($row['jumlah'], 0, ',', '.'); ?></b></td>
+                        <th>Tanggal</th>
+                        <th>Jenis</th>
+                        <th>Keterangan</th>
+                        <th>Jumlah</th>
+                        <th>Aksi</th>
                     </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="4" style="text-align:center;">Belum ada transaksi operasional di periode ini.</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php if (count($transaksi_list) > 0): ?>
+                        <?php foreach ($transaksi_list as $row): ?>
+                        <tr>
+                            <td><?php echo date('d-m-Y H:i', strtotime($row['tanggal'])); ?></td>
+                            <td>
+                                <?php if ($row['jenis'] == 'pemasukan'): ?>
+                                    <span class="badge-pemasukan">Pemasukan</span>
+                                <?php else: ?>
+                                    <span class="badge-pengeluaran">Pengeluaran</span>
+                                <?php endif; ?>
+                            </td>
+                            <td><?php echo htmlspecialchars($row['keterangan']); ?></td>
+                            <td style="text-align:right;"><b>Rp <?php echo number_format($row['jumlah'], 0, ',', '.'); ?></b></td>
+                            <td style="text-align:center;">
+                                <?php
+                                // Cek apakah ini transaksi Penjualan atau Pembelian untuk tombol detail
+                                if (preg_match('/Penjualan #(\d+)/', $row['keterangan'], $matches)) {
+                                    $id_penjualan = (int)$matches[1];
+                                    echo '<a href="../transaksi/detail_penjualan.php?id='.$id_penjualan.'" class="btn-secondary" style="font-size:12px; padding:5px 10px;">Lihat Nota</a>';
+                                } elseif (preg_match('/Pembelian #(\d+)/', $row['keterangan'], $matches)) {
+                                    $id_pembelian = (int)$matches[1];
+                                    echo '<a href="../pembelian/detail_pembelian.php?id='.$id_pembelian.'" class="btn-secondary" style="font-size:12px; padding:5px 10px;">Lihat Nota</a>';
+                                } else {
+                                    echo '-';
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5" style="text-align:center;">Belum ada riwayat transaksi.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
 
     </div>
 
