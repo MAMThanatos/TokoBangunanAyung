@@ -98,6 +98,14 @@ $role = $_SESSION['role'];
             <?php endif; ?>
 
         </div>
+        
+        <div style="margin-top: 40px; border-top: 1px solid #ddd; padding-top: 20px; text-align: center; color: #555;">
+            <h2 style="margin-bottom: 10px;">Kelompok 4:</h4>
+            <p style="margin: 5px 0; font-size: 16px;">Muhamad Aziz Mufashshal - 231011400236</p>
+            <p style="margin: 5px 0; font-size: 16px;">Muhammad Nur Fahrurroji Assyidiq - 231011400250</p>
+            <p style="margin: 5px 0; font-size: 16px;">Muhammad Rifqy Pratama - 231011400260</p>
+        </div>
+
     </div>
 
 </body>
